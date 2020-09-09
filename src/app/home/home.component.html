@@ -1,0 +1,71 @@
+<div class="home-container">
+
+  <div class="container">
+    <table mat-table [dataSource]="dataSource" class="">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- NIK Column -->
+      <ng-container matColumnDef="nik">
+        <th mat-header-cell *matHeaderCellDef> NIK </th>
+        <td mat-cell *matCellDef="let element"> {{element.nik}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Division Column -->
+      <ng-container matColumnDef="division">
+        <th mat-header-cell *matHeaderCellDef> Division </th>
+        <td mat-cell *matCellDef="let element"> {{element.division}} </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> Position </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+
+      <!-- Last Position Column -->
+      <ng-container matColumnDef="lastPosition">
+        <th mat-header-cell *matHeaderCellDef> Last Position </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastPosition}} </td>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef> Created Date </th>
+        <td mat-cell *matCellDef="let element" class="button-row">
+          <p>{{element.createdDate | date: 'MMM d, yyyy'}}</p>
+          <button mat-raised-button color="primary" class="button-edit" [routerLink]="['/input', element.id]">Edit</button>
+          <button mat-raised-button color="warn" class="button-delete" (click)="delete(element)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    <div class="create-button-container">
+      <button mat-raised-button color="primary" class="button-add" routerLink="/input" routerLinkActive="active">Add Employee</button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,48 @@
+.home-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .container{
+    width: 90%;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+    table {
+      width: 100%;
+    }
+
+    mat-paginator{
+      width: 100%;
+    }
+
+    .button-row{
+      display: flex;
+      flex-direction: row;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-right: 50px;
+      justify-content: space-between;
+      align-items: center;
+      .button-edit{
+        //margin-right: 100px;
+      }
+      .button-delete{
+        //margin-left: 50px;
+      }
+    }
+
+    .create-button-container{
+      width: 100%;
+      background-color: #fff;
+    }
+  }
+}
