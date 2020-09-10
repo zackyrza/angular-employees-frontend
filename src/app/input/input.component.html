@@ -40,8 +40,11 @@
     </form>
 
     <div class="navigation-button-container">
-      <button mat-raised-button color="primary" class="button-add" routerLink="/" routerLinkActive="active">Cancel</button>
-      <button mat-raised-button color="primary" class="button-add" [disabled]="selectedPosition === 0 || selectedDivision === 0 || name === ''" (click)="save()">Save</button>
+      <button mat-raised-button color="primary" class="button-add" routerLink="/" routerLinkActive="active">Cancel
+      </button>
+      <button mat-raised-button color="primary" class="button-add"
+              [disabled]="selectedPosition === 0 || selectedDivision === 0 || name === ''" (click)="save()">Save
+      </button>
       <div style="width: 10%;"></div>
     </div>
   </div>

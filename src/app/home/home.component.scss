@@ -1,11 +1,11 @@
-.home-container{
+.home-container {
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  .container{
+  .container {
     width: 90%;
     background-color: #fff;
     padding: 20px;
@@ -20,11 +20,11 @@
       width: 100%;
     }
 
-    mat-paginator{
+    mat-paginator {
       width: 100%;
     }
 
-    .button-row{
+    .button-row {
       display: flex;
       flex-direction: row;
       padding-top: 6px;
@@ -32,15 +32,17 @@
       padding-right: 50px;
       justify-content: space-between;
       align-items: center;
-      .button-edit{
+
+      .button-edit {
         //margin-right: 100px;
       }
-      .button-delete{
+
+      .button-delete {
         //margin-left: 50px;
       }
     }
 
-    .create-button-container{
+    .create-button-container {
       width: 100%;
       background-color: #fff;
     }

@@ -1,8 +1,8 @@
 /* tslint:disable:typedef */
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {catchError, retry} from 'rxjs/operators';
 
 export interface Employee {
   createdDate: string;
@@ -20,13 +20,15 @@ export interface Employee {
 })
 export class ConfigService {
 
-  apiUrl = 'https://spring-boot-angular6.herokuapp.com';
+  // apiUrl = 'https://spring-boot-angular6.herokuapp.com';
+  apiUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  async getData(){
+  async getData() {
     return new Promise((resolve, reject) => {
-      this.http.get(`${this.apiUrl}/main/employees`, {headers: {Accept: '*/*'}})
+      this.http.get(`${this.apiUrl}/employees`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )
@@ -37,9 +39,9 @@ export class ConfigService {
     });
   }
 
-  getDataDetail(id: string){
+  getDataDetail(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(`${this.apiUrl}/main/employees/${id}`, {headers: {Accept: '*/*'}})
+      this.http.get(`${this.apiUrl}/employees/${id}`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )
@@ -50,9 +52,14 @@ export class ConfigService {
     });
   }
 
-  async createOrUpdateData(body: Employee){
+  async createOrUpdateData(body: Employee) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${this.apiUrl}/main/employees`, body, {headers: {Accept: 'application/json, text/plain, */*', 'Content-Type': 'application/json'}})
+      this.http.post(`${this.apiUrl}/employees`, body, {
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
         .pipe(
           catchError(this.handleError)
         )
@@ -63,9 +70,9 @@ export class ConfigService {
     });
   }
 
-  deleteData(id: number){
+  deleteData(id: number) {
     return new Promise((resolve, reject) => {
-      this.http.delete(`${this.apiUrl}/main/employees/${id}`, {headers: {Accept: '*/*'}})
+      this.http.delete(`${this.apiUrl}/employees/${id}`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )
@@ -76,9 +83,9 @@ export class ConfigService {
     });
   }
 
-  getDivisions(){
+  getDivisions() {
     return new Promise((resolve, reject) => {
-      this.http.get(`${this.apiUrl}/main/divisions`, {headers: {Accept: '*/*'}})
+      this.http.get(`${this.apiUrl}/division`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )
@@ -89,9 +96,9 @@ export class ConfigService {
     });
   }
 
-  getDivisionDetail(id: string){
+  getDivisionDetail(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(`${this.apiUrl}/main/divisions/${id}`, {headers: {Accept: '*/*'}})
+      this.http.get(`${this.apiUrl}/division/${id}`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )
@@ -102,9 +109,9 @@ export class ConfigService {
     });
   }
 
-  getPositions(){
+  getPositions() {
     return new Promise(resolve => {
-      this.http.get(`${this.apiUrl}/main/positions`, {headers: {Accept: '*/*'}})
+      this.http.get(`${this.apiUrl}/position`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )
@@ -115,9 +122,9 @@ export class ConfigService {
     });
   }
 
-  getPositionDetail(id: string){
+  getPositionDetail(id: string) {
     return new Promise(resolve => {
-      this.http.get(`${this.apiUrl}/main/positions/${id}`, {headers: {Accept: '*/*'}})
+      this.http.get(`${this.apiUrl}/position/${id}`, {headers: {Accept: '*/*'}})
         .pipe(
           catchError(this.handleError)
         )

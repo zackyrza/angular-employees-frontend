@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, ControlContainer} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -10,15 +10,18 @@ interface DivisionAndPosition {
   id: string;
   name: string;
 }
+
 export interface Position {
   id: number;
   level: number;
   name: string;
 }
+
 export interface Division {
   id: number;
   name: string;
 }
+
 export interface Employees {
   createdDate: string;
   divisionId: number;
@@ -67,21 +70,22 @@ export class InputComponent implements OnInit {
   divisionList = [];
   positionList = [];
 
-  constructor(private router: Router, private service: ConfigService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private service: ConfigService, private _snackBar: MatSnackBar) {
+  }
 
-  onChangeEvent(event: any){
+  onChangeEvent(event: any) {
 
     console.log(event.target.value);
     this.name = event.target.value;
 
   }
 
-  onChangePosition(id: any): void{
-    if (id !== this.selectedPosition) {
+  onChangePosition(id: number): void {
+    if (this.positionList.filter((t: Position) => t.id === this.selectedPosition).length > 0) {
       this.lastPosition = this.positionList.filter((t: Position) => t.id === this.selectedPosition)[0].name;
-      if(this.positionList.filter((t: Position) => t.id === id)[0].level > this.positionList.filter((t: Position) => t.id === this.selectedPosition)[0].level){
+      if (this.positionList.filter((t: Position) => t.id === id)[0].level > this.positionList.filter((t: Position) => t.id === this.selectedPosition)[0].level) {
         this.type = 'PROMOTION';
-      }else{
+      } else {
         this.type = 'DEMOTION';
       }
     }
@@ -97,7 +101,7 @@ export class InputComponent implements OnInit {
       this.positionList = res;
     });
 
-    if (this.isEdit){
+    if (this.isEdit) {
       this.service.getDataDetail(this.router.url.split('/')[this.router.url.split('/').length - 1]).then((res: Employees) => {
         this.id = res.id;
         this.name = res.name;
@@ -113,7 +117,7 @@ export class InputComponent implements OnInit {
   async save(): Promise<any> {
     let body: Employees;
     // ini kalo update data
-    if (this.isEdit){
+    if (this.isEdit) {
       body = {
         name: this.name,
         divisionId: this.selectedDivision,

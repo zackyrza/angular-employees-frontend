@@ -18,15 +18,18 @@ export interface PeriodicElement {
   created_date: string;
   button: any;
 }
+
 export interface Position {
   id: number;
   level: number;
   name: string;
 }
+
 export interface Division {
   id: number;
   name: string;
 }
+
 export interface Employees {
   createdDate: string;
   divisionId: number;
@@ -54,7 +57,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: ConfigService, private _snackBar: MatSnackBar) { }
+  constructor(private service: ConfigService, private _snackBar: MatSnackBar) {
+  }
 
   async ngOnInit(): Promise<any> {
     await this.service.getDivisions().then((res: any) => {
@@ -82,8 +86,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  async delete(d: Employees){
-    if (confirm(`Anda yakin ingin menghapus ${d.name}?`)){
+  async delete(d: Employees) {
+    if (confirm(`Anda yakin ingin menghapus ${d.name}?`)) {
       await this.service.deleteData(d.id);
       this._snackBar.open(`Berhasil menghapus ${d.name}`, 'OK', {
         duration: 3500,
